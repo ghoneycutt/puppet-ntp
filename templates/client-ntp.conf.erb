@@ -1,0 +1,23 @@
+# This file is being maintained by Puppet.
+# DO NOT EDIT
+
+# Permit time synchronization with our time source, but do not
+# permit the source to query or modify the service on this system.
+restrict default kod nomodify notrap nopeer noquery
+restrict -6 default kod nomodify notrap nopeer noquery
+
+# Permit all access over the loopback interface.  This could
+# be tightened as well, but to do so would effect some of
+# the administrative functions.
+restrict 127.0.0.1 
+restrict -6 ::1
+
+<% ntpServerList.each do |ntpServer| -%>
+server <%= ntpServer %> iburst
+<% end -%>
+
+# Drift file.  Put this in a directory which the daemon can write to.
+# No symbolic links allowed, either, since the daemon updates the file
+# by creating a temporary in the same directory and then rename()'ing
+# it to the file.
+driftfile /var/lib/ntp/drift

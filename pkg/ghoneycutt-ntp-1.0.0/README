@@ -1,0 +1,5 @@
+ntp
+
+This is the ntp module which manages ntp clients and servers
+
+Released 20100624 - Garrett Honeycutt - GPLv2
