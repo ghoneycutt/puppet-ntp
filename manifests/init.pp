@@ -2,13 +2,11 @@
 #
 # This module manages ntp and is standard for all hosts
 #
-# Parameters:
-#
-# Actions:
-#
 # Requires:
+#   $ntpServerList must be set in site manifest
 #
-# Sample Usage: include ntp
+# Sample Usage:
+#   include ntp
 #
 class ntp {
 
