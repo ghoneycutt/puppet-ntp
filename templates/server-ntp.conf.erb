@@ -12,11 +12,11 @@ restrict -6 default kod nomodify notrap nopeer noquery
 restrict 127.0.0.1 
 restrict -6 ::1
 
-<% ntp_sources.each do |ntpServer| -%>
+<% ::ntp_sources.each do |ntpServer| -%>
 server <%= ntpServer %>
 <% end -%>
 
-<% ntp_peers.each do |ntpPeers| -%>
+<% ::ntp_peers.each do |ntpPeers| -%>
 peer <%= ntpPeers %>
 <% end -%>
 
