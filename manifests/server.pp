@@ -4,13 +4,16 @@
 #
 # Requires: 
 #   class ntp
-#   $ntp_sources be set in site manifest
-#   $ntp_peers be set in site manifest
+#   $ntp_sources and $ntp_peers passed as parameters to class ntp
 #
 # Sample Usage:
-#   include ntp::server
+#   class {
+#       "ntp::server":
+#           ntp_sources => [ "10.0.0.1" ],
+#           ntp_peers   => [ "10.0.0.2" ];
+#   }
 #
-class ntp::server inherits ntp {
+class ntp::server( $ntp_sources, $ntp_peers ) inherits ntp {
     File["/etc/ntp.conf"] {
         content => template("ntp/server-ntp.conf.erb"),
     }

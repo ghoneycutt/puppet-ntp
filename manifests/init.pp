@@ -3,12 +3,15 @@
 # This module manages ntp and is standard for all hosts
 #
 # Requires:
-#   $ntpServerList must be set in site manifest
+#   $ntpServerList must be passed in as a parameter
 #
 # Sample Usage:
-#   include ntp
+#   class {
+#       "ntp":
+#           ntpServerList => [ "127.0.0.1" ];
+#   }
 #
-class ntp {
+class ntp( $ntpServerList ) {
 
     # the ntp package and service has a different name under RHEL vs. Debian
     case $operatingsystem {
