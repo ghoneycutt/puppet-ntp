@@ -29,6 +29,8 @@ class ntp {
         alias  => "ntpd",
         ensure  => running,
         enable  => true,
+        hasrestart      => true,
+        hasstatus       => true,
         require => Package["ntp"],
     } # service
 } # class ntp
