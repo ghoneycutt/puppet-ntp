@@ -2,7 +2,7 @@
 #
 # This module manages ntp servers
 #
-# Requires: 
+# Requires:
 #   class ntp
 #   $ntp_sources be set in site manifest
 #   $ntp_peers be set in site manifest

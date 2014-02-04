@@ -10,7 +10,7 @@
 #
 class ntp {
 
-    package { "ntp": }
+    package { "ntp": ensure => installed }
 
     file { "/etc/ntp.conf":
         mode    => "644",
@@ -19,9 +19,18 @@ class ntp {
         require => Package["ntp"],
     } # file
 
-    service { "ntpd":
+    $ntpd = $operatingsystem ? {
+        CentOS                => 'ntpd',
+        Debian                => 'ntp',
+        default               =>  undef,
+    }
+
+    service { $ntpd:
+        alias  => "ntpd",
         ensure  => running,
         enable  => true,
+        hasrestart      => true,
+        hasstatus       => true,
         require => Package["ntp"],
     } # service
 } # class ntp
